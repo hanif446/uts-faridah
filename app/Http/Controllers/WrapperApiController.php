@@ -43,7 +43,7 @@ class WrapperApiController extends Controller
     public function copy_v2(Request $request)
     {
         $token = $request->bearerToken();
-		$path = $request->input('from_path');
+		$from_path = $request->input('from_path');
 		$to_path = $request->input('to_path');
 		$allwshared = $request->input('allow_shared_folder');
 		$autorename = $request->input('autorename');
