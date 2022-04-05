@@ -20,24 +20,24 @@ class WrapperApiController extends Controller
     public function list_folder(Request $request)
     {
         $token = $request->bearerToken();
-		$path = $request->input('path');
-		$recursive = $request->input('recursive');
-		$minfo = $request->input('include_media_info');
-		$deleted = $request->input('include_deleted');
-		$shared = $request->input('inlcude_has_explicit_shared_members');
-		$mount = $request->input('include_mounted_folders');
-		$down = $request->input('include_non_downloadable_files');
-    	$json = Http::withToken($token)
-    	->withBody(json_encode([
-		    "path"=>$path,
-		    "recursive"=> $recursive,
-		    "include_media_info"=> $minfo,
-		    "include_deleted"=> $deleted,
-		    "include_has_explicit_shared_members"=> $shared,
-		    "include_mounted_folders"=> $mount,
-		    "include_non_downloadable_files"=> $down]),'application/json')
-    	->post('https://api.dropboxapi.com/2/files/list_folder')->json();
-		    	return response()->json($json);
+        $path = $request->input('path');
+        $recursive = $request->input('recursive');
+        $minfo = $request->input('include_media_info');
+        $deleted = $request->input('include_deleted');
+        $shared = $request->input('include_has_explicit_shared_members');
+        $mount = $request->input('include_mounted_folders');
+        $down = $request->input('include_non_downloadable_files');
+        $json = Http::withToken($token)
+        ->withBody(json_encode([
+            "path"=> $path,
+            "recursive"=> $recursive,
+            "include_media_info"=> $minfo,
+            "include_deleted"=> $deleted,
+            "include_has_explicit_shared_members"=> $shared,
+            "include_mounted_folders"=> $mount,
+            "include_non_downloadable_files"=> $down]),'application/json')
+        ->post('https://api.dropboxapi.com/2/files/list_folder')->json();
+                return response()->json($json);
     }
 
     public function copy_v2(Request $request)
