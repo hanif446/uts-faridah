@@ -64,7 +64,7 @@ class WrapperApiController extends Controller
 		$path = $request->input('path');
 		$sURL = $request->input('short_url');
     	$json = Http::withToken($token)->withBody(json_encode([
-    	"path"=> "/Ekonomika Makalah Kelompok 1.pptx",
+    	"path"=> $path,
     	"short_url"=> $sURL]), 'application/json')
     	->post('https://api.dropboxapi.com/2/sharing/create_shared_link')->json();
     	return response()->json($json);
@@ -75,7 +75,7 @@ class WrapperApiController extends Controller
         $token = $request->bearerToken();
 		$path = $request->input('path');
     	$json = Http::withToken($token)->withBody(json_encode([
-    	"path"=> "/Ekonomika Makalah Kelompok 1.pptx"]), 'application/json')
+    	"path"=> $path]), 'application/json')
     	->post('https://api.dropboxapi.com/2/files/delete_v2')->json();
     	return response()->json($json);
     }
